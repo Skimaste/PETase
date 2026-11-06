@@ -33,7 +33,7 @@
 #v(1fr)
 
 #heading(level: 2, numbering: none, outlined: false)[Code Availability]
-#link("https://github.com/Skimaste/TP2.git")[https://github.com/Skimaste/TP2.git]
+#link("https://github.com/Skimaste/PETase.git")[https://github.com/Skimaste/PETase.git]
 
 #pagebreak()
 
