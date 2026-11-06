@@ -1,0 +1,11 @@
+conda activate cb
+
+mmseqs createdb PETase.faa your_db
+mmseqs search your_db OM-RGC_v2.rep_seq search.out.db tmp -s 10
+mmseqs createtsv your_db OM-RGC_v2.rep_seq search.out.db search.tsv
+mmseqs result2msa your_db OM-RGC_v2.rep_seq search.out.db msa.db
+cat msa.db |tr -d '\0' >msa_clean.db
+cat search.out.db |tr -d '\0' >search_clean.out.db
+gzcat abundances_rep_seq.tsv.gz | head -n 1 > ab_hits.tsv                   
+grep -a '^>' msa_clean.db | sed 's/^>//' | awk '{print $1}' | sort -u > hit_ids.txt
+gzcat abundances_rep_seq.tsv.gz | grep -F -f hit_ids.txt >> ab_hits.tsv
